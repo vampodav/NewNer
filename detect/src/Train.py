@@ -3,17 +3,18 @@ from keras.models import Sequential
 from keras.layers import Conv2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
 from keras import backend as K
+import sys
 
 img_width, img_height = 40, 40
 
 
 
 
-train_data_dir = 'venv/data/Final_Training/Images'
-validation_data_dir = 'venv/data/Final_Training/valid'
+train_data_dir = sys.argv[3]
+validation_data_dir =  sys.argv[4]
 train_samples = 2000
 validation_samples = 800
-epochs = 1
+epochs = int(sys.argv[1])
 batch_size = 10
 
 if K.image_data_format() == 'channels_first':
@@ -77,32 +78,8 @@ model.fit_generator(
 
 model_json = model.to_json()
 
-json_file = open("midel.json", "w")
-json_file.write(model_json)
-model.save_weights("weight.h5")
-json_file.close()
 
-
-
-
+model.save(sys.argv[2])
 
 
 # loss: 0.4633 - acc: 0.8430 - val_loss: 0.3272 - val_acc: 0.9091
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
