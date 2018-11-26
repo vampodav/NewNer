@@ -40,11 +40,11 @@ model.add(Dropout(0.5))
 
 
 model.add(Dense(11))
-model.add(Activation('sigmoid'))
+model.add(Activation('softmax'))
 
 
-model.compile(loss='binary_crossentropy',
-              optimizer='sgd',
+model.compile(loss='categorical_crossentropy',
+              optimizer='rmsprop',
               metrics=['accuracy'])
 print(model.summary())
 
@@ -82,4 +82,4 @@ model_json = model.to_json()
 model.save(sys.argv[2])
 
 
-# loss: 0.4633 - acc: 0.8430 - val_loss: 0.3272 - val_acc: 0.9091
+# loss: 0.3288 - acc: 0.8940 - val_loss: 0.1972 - val_acc: 0.9462
